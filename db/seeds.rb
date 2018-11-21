@@ -48,7 +48,13 @@ education = Education.new(
   start_year: "1980",
   end_year: "1984"
 )
-
+user = User.create(
+  user_name: "User1234",
+  email:"user@email.com",
+  revenue_range: "< $100K/yr",
+  size_range: "< 10",
+  location: "Washington DC"
+)
 expert.work_experiences << work_experience1
 expert.work_experiences << work_experience2
 expert.educations << education
