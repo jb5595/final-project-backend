@@ -8,6 +8,10 @@
 
 Expert.destroy_all
 WorkExperience.destroy_all
+User.destroy_all
+Question.destroy_all
+Education.destroy_all
+Answer.destroy_all
 
 expert = Expert.create(
   full_name: "John Smith",
@@ -20,7 +24,8 @@ expert = Expert.create(
   job_title: "Partner",
   company: "Lawyer Lawyer & Lawyer",
   phone: "555-555-5555",
-  email: "lawyer@email.com"
+  email: "lawyer@email.com",
+  password: "password"
 )
 work_experience1 = WorkExperience.new(
   title: "Attorney",
@@ -53,8 +58,37 @@ user = User.create(
   email:"user@email.com",
   revenue_range: "< $100K/yr",
   size_range: "< 10",
-  location: "Washington DC"
+  location: "Washington DC",
+  password: "password"
+
 )
+question1 = Question.new(
+  question: "is this a question?",
+  question_details: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+)
+question2 = Question.new(
+  question: "What do I need to expand my busienss to overseas markets",
+  question_details: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+)
+answer1 = Answer.create(
+  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  question_id: question1.id,
+  expert_id: expert.id
+)
+answer2 = Answer.create(
+  content: "consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  question_id: question1.id,
+  expert_id: expert.id
+
+)
+answer3 = Answer.create(
+  content: "llit anim id est laborum.",
+  question_id: question2.id,
+  expert_id: expert.id
+)
+
+user.questions << question1
+user.questions << question2
 expert.work_experiences << work_experience1
 expert.work_experiences << work_experience2
 expert.educations << education
