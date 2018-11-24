@@ -3,10 +3,10 @@ class User < ApplicationRecord
   has_many :questions
 
   # Auth
-  # has_secure_password
+  has_secure_password
 
   # Validations
-  # validates :user_name, uniqueness: { case_sensitive: false }
+  validates :user_name, uniqueness: { case_sensitive: false }
 
 
 end

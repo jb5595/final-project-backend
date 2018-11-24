@@ -5,9 +5,9 @@ class Expert < ApplicationRecord
   has_many :answers
 
   # Auth
-  # has_secure_password
+  has_secure_password
 
   # Validations
-  # validates :user_name, uniqueness: { case_sensitive: false }
-  
+  validates :user_name, uniqueness: { case_sensitive: false }
+
 end

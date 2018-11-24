@@ -1,5 +1,5 @@
 class ExpertsController < ApplicationController
-  # skip_before_action :authorized, only: [:show, :index]
+  skip_before_action :authorized, only: [:show, :index]
 
   def show
     @expert = Expert.find(params[:id])
