@@ -1,0 +1,2 @@
+class TagQuestionsController < ApplicationController
+end
