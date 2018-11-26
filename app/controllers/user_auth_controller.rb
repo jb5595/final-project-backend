@@ -4,7 +4,8 @@ class UserAuthController < ApplicationController
   skip_before_action :authorized, only: [:create]
 
   def create
-    @user = User.find_by(username: user_login_params[:username])
+    byebug
+    @user = User.find_by(user_name: user_login_params[:user_name])
     #User#authenticate comes from BCrypt
     if @user && @user.authenticate(user_login_params[:password])
       # encode token comes from ApplicationController
@@ -19,7 +20,7 @@ class UserAuthController < ApplicationController
 
   def user_login_params
     # params { user: {username: 'Chandler Bing', password: 'hi' } }
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:user_name, :password)
   end
 
 end
