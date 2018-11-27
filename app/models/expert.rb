@@ -3,6 +3,7 @@ class Expert < ApplicationRecord
   has_many :work_experiences
   has_many :educations
   has_many :answers
+  has_many :questions, through: :answers
 
   # Auth
   has_secure_password
