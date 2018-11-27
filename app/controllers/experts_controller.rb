@@ -1,5 +1,5 @@
 class ExpertsController < ApplicationController
-  skip_before_action :authorized, only: [:show, :index]
+  skip_before_action :authorized, only: [:show, :index, :search_preview]
 
   def show
     @expert = Expert.find(params[:id])
@@ -8,6 +8,11 @@ class ExpertsController < ApplicationController
 
   def index
     @experts = Expert.all
+    render json: @experts, status: 200
+  end
+
+  def search_preview
+    @experts = Expert.search_preview_results(params[:search_term])
     render json: @experts, status: 200
   end
 end

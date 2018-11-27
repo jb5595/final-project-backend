@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  skip_before_action :authorized, only: [:index, :show]
+  skip_before_action :authorized, only: [:index, :show, :search_preview]
 
   def create
     @question = Question.create(question: question_params[:question],
@@ -12,10 +12,18 @@ class QuestionsController < ApplicationController
     render json: @question, status: 200
   end
 
+  def search_preview
+    @questions = Question.search_preview_results(params[:search_term])
+    render json: @questions, status: 200
+  end
+
 
   def index
     if params[:user_id]
       @questions = User.find(params[:user_id]).questions
+      render json: @questions, status: 200
+    else
+      @questions = Question.all
       render json: @questions, status: 200
     end
   end
