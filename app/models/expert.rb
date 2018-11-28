@@ -44,9 +44,7 @@ class Expert < ApplicationRecord
     arr.push(tags.max_by { |v| freq[v] })
     freq[arr[1]] = 0
     arr.push(tags.max_by { |v| freq[v] })
-    arr.flatten.slice(0,3)
-
-
+    arr.flatten.slice(0,3).compact
   end
 
 

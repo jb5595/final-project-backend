@@ -26,7 +26,12 @@ class ApplicationController < ActionController::API
   def current_user
     if decoded_token
       user_id = decoded_token[0]['user_id']
-      @user = User.find_by(id: user_id)
+      if user_id != nil
+        @user = User.find_by(id: user_id)
+      else
+        expert_id = decoded_token[0]['expert_id']
+        @expert= Expert.find_by(id: expert_id)
+      end
     end
   end
 
