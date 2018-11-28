@@ -2,6 +2,8 @@ class Tag < ApplicationRecord
   # Relations
   has_many :tag_questions
   has_many :questions, through: :tag_questions
+  has_many :expert_tags
+  has_many :tags, through: :expert_tags
 
   # Call Backs
   before_save :format_tag

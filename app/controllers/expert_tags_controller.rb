@@ -1,0 +1,2 @@
+class ExpertTagsController < ApplicationController
+end
