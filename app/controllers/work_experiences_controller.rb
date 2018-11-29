@@ -11,7 +11,6 @@ class WorkExperiencesController < ApplicationController
   end
 
   def update
-    byebug
     if params[:expert_id]
       @expert = Expert.find(params[:expert_id])
       @work_experience = WorkExperience.find(params[:work_experience][:id])
