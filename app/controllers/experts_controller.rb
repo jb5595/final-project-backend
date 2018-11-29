@@ -17,8 +17,19 @@ class ExpertsController < ApplicationController
   end
 
   def update
+    update_params = expert_params
     @expert = Expert.find(params[:id])
-    if @expert.update(expert_params)
+    if expert_params[:tags]
+      @tags = []
+      # Handles new Tag Creation if necessary 
+      expert_params[:tags].each do |tag|
+        @tag = Tag.find_or_create_by(name:tag)
+        @tags << @tag
+      end
+      update_params[:tags] = @tags
+
+    end
+    if @expert.update(update_params)
       render json: @expert, status: 200
     else
       render json: { error: 'failed to update account' }, status: :not_acceptable

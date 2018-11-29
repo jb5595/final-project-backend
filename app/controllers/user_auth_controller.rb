@@ -15,7 +15,7 @@ class UserAuthController < ApplicationController
       token = encode_token({ expert_id: @expert.id })
       render json: { expert: ExpertSerializer.new(@expert), jwt: token }, status: :accepted
     else
-      render json: { message: 'Invalid username or password' }, status: :unauthorized
+      render json: { error: 'Invalid username or password' }, status: :unauthorized
     end
   end
 
