@@ -16,4 +16,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :questions, only: [:index]
   end
+  resources :experts, only: [:show] do
+    resources :work_experiences, only: [:index, :create, :update, :destroy]
+    resources :educations, only: [:index, :create, :update, :destroy]
+
+  end
 end
