@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :question_upvotes
   resources :expert_tags
   get "/experts/searchPreview/:search_term", to: 'experts#search_preview'
   get "/questions/searchPreview/:search_term", to: 'questions#search_preview'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_28_180908) do
+ActiveRecord::Schema.define(version: 2018_11_30_193947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 2018_11_28_180908) do
     t.string "email"
     t.string "company"
     t.string "password_digest"
+  end
+
+  create_table "question_upvotes", force: :cascade do |t|
+    t.string "upvoter_type"
+    t.bigint "upvoter_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "score", default: 0
+    t.index ["upvoter_type", "upvoter_id"], name: "index_question_upvotes_on_upvoter_type_and_upvoter_id"
   end
 
   create_table "questions", force: :cascade do |t|

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Relations
   has_many :questions
+  has_many :question_upvotes, as: :upvoter
 
   # Auth
   has_secure_password
