@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :answer_upvotes
   resources :question_upvotes
   resources :expert_tags
   get "/experts/searchPreview/:search_term", to: 'experts#search_preview'
@@ -16,6 +17,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show] do
     resources :questions, only: [:index]
+  end
+  resources :questions, only: [:show] do
+    resources :question_upvotes, only: [:index]
   end
   resources :experts, only: [:show] do
     resources :work_experiences, only: [:index, :create, :update, :destroy]

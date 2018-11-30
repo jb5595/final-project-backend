@@ -7,6 +7,7 @@ class Expert < ApplicationRecord
   has_many :expert_tags
   has_many :tags, through: :expert_tags
   has_many :question_upvotes, as: :upvoter
+  has_many :answer_upvotes, as: :upvoter
 
   # Auth
   has_secure_password

@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_30_193947) do
+ActiveRecord::Schema.define(version: 2018_11_30_212423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_upvotes", force: :cascade do |t|
+    t.string "upvoter_type"
+    t.bigint "upvoter_id"
+    t.integer "answer_id"
+    t.integer "score", default: 0
+    t.integer "integer", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["upvoter_type", "upvoter_id"], name: "index_answer_upvotes_on_upvoter_type_and_upvoter_id"
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string "content"

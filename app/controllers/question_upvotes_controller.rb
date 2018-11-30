@@ -1,4 +1,5 @@
 class QuestionUpvotesController < ApplicationController
+  skip_before_action :authorized, only: [:index]
 
   def create
     @upvote = QuestionUpvote.find_by(upvoter_type: upvote_params[:upvoter_type], upvoter_id: upvote_params[:upvoter_id], question_id: upvote_params[:question_id] )
@@ -10,7 +11,15 @@ class QuestionUpvotesController < ApplicationController
       @upvote = QuestionUpvote.create(upvote_params)
     end
     render json: @upvote, status: 200
+  end
 
+  def index
+
+    if params[:question_id]
+      @question = Question.find(params[:question_id])
+      @upvotes = @question.question_upvotes
+      render json: @upvotes, stats: 200
+    end
   end
 
 
