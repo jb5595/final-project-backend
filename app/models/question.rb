@@ -9,4 +9,8 @@ class Question < ApplicationRecord
   def self.search_preview_results(search_term)
     Question.all.select {|question| question.question.downcase.include?(search_term.downcase)}.slice(0,3)
   end
+
+  def upvote_score
+    self.question_upvotes.sum{|upvote| upvote.score}
+  end
 end
