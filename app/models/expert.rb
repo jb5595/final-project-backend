@@ -8,6 +8,8 @@ class Expert < ApplicationRecord
   has_many :tags, through: :expert_tags
   has_many :question_upvotes, as: :upvoter
   has_many :answer_upvotes, as: :upvoter
+  has_many :reviews
+
 
   # Auth
   has_secure_password
@@ -21,6 +23,9 @@ class Expert < ApplicationRecord
   validate :no_user_shares_user_name
 
 
+  def total_upvotes
+    self.answers.sum{|answer| answer.upvote_score}
+  end
 
   def no_user_shares_user_name
 
@@ -35,6 +40,15 @@ class Expert < ApplicationRecord
 
   def answered_questions
     self.questions.uniq
+  end
+
+  def average_rating
+    if self.reviews.length ==0
+      return 5
+    else
+      average = self.reviews.sum{|review| review.score}
+      average = (average/self.reviews.length).round
+    end
   end
 
   def top_tags

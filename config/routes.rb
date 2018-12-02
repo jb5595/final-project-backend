@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :answer_upvotes
   resources :question_upvotes
   resources :expert_tags
@@ -21,9 +22,13 @@ Rails.application.routes.draw do
   resources :questions, only: [:show] do
     resources :question_upvotes, only: [:index]
   end
+  resources :answers, only: [:show] do
+    resources :answer_upvotes, only: [:index]
+  end
   resources :experts, only: [:show] do
     resources :work_experiences, only: [:index, :create, :update, :destroy]
     resources :educations, only: [:index, :create, :update, :destroy]
+    resources :reviews, only: [:index]
 
   end
 end

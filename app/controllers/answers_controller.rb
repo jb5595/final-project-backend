@@ -6,10 +6,11 @@ class AnswersController < ApplicationController
   end
 
   def create
-    byebug
     @answer = Answer.create(answer_params)
     render json: @answer, status: 200
   end
+
+
 
   private
 

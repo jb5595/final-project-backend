@@ -4,6 +4,7 @@ class Question < ApplicationRecord
   has_many :question_upvotes
   has_many :tag_questions
   has_many :tags, through: :tag_questions
+  has_many :reviews
 
 
   def self.search_preview_results(search_term)

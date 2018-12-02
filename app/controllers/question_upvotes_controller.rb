@@ -18,7 +18,9 @@ class QuestionUpvotesController < ApplicationController
     if params[:question_id]
       @question = Question.find(params[:question_id])
       @upvotes = @question.question_upvotes
-      render json: @upvotes, stats: 200
+      @upvoteScore = @question.upvote_score
+
+      render json: {upvotes: @upvotes, upvoteScore:@upvoteScore}, stats: 200
     end
   end
 
