@@ -21,7 +21,7 @@ class ExpertsController < ApplicationController
     @expert = Expert.find(params[:id])
     if expert_params[:tags]
       @tags = []
-      # Handles new Tag Creation if necessary 
+      # Handles new Tag Creation if necessary
       expert_params[:tags].each do |tag|
         @tag = Tag.find_or_create_by(name:tag)
         @tags << @tag
@@ -30,6 +30,14 @@ class ExpertsController < ApplicationController
 
     end
     if @expert.update(update_params)
+      if (@expert.profile_picture.attached?)
+        @expert.profile_picture_url = url_for(@expert.profile_picture)
+        @expert.save
+      end
+      if (@expert.cover_photo.attached?)
+        @expert.cover_photo_url = url_for(@expert.cover_photo)
+        @expert.save
+      end
       render json: @expert, status: 200
     else
       render json: { error: 'failed to update account' }, status: :not_acceptable
@@ -37,8 +45,7 @@ class ExpertsController < ApplicationController
   end
 
   def create
-
-    @expert = Expert.create(expert_params)
+    @expert = Expert.create( expert_params[:expert])
     if @expert.valid?
       @token = encode_token(expert_id: @expert.id)
       render json: { expert: ExpertSerializer.new(@expert), jwt: @token }, status: :created
@@ -49,7 +56,7 @@ class ExpertsController < ApplicationController
 
   private
   def expert_params
-    params.require(:expert).permit(:user_name, :full_name, :address, :city,:state,:zip_code, :website_url,
-    :about, :profile_picture, :job_title, :phone, :email, :company, :password, tags: [])
+    params.permit(:user_name, :full_name, :address, :city,:state,:zip_code, :website_url, :cover_photo,
+    :about, :profile_picture, :job_title, :phone, :email, :company, :password, tags: [], :expert =>{})
   end
 end

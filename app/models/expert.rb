@@ -10,6 +10,9 @@ class Expert < ApplicationRecord
   has_many :answer_upvotes, as: :upvoter
   has_many :reviews
 
+  has_one_attached :profile_picture
+  has_one_attached :cover_photo
+
 
   # Auth
   has_secure_password
@@ -26,6 +29,7 @@ class Expert < ApplicationRecord
   def total_upvotes
     self.answers.sum{|answer| answer.upvote_score}
   end
+
 
   def no_user_shares_user_name
 

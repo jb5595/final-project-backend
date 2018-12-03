@@ -19,5 +19,9 @@ class User < ApplicationRecord
     end
   end
 
+  def number_of_questions
+    self.questions.length
+  end
+
 
 end
