@@ -13,6 +13,13 @@ class User < ApplicationRecord
   # so they will be able to both login from login button
   validate :no_expert_shares_user_name
 
+  before_save :format_industry
+
+  def format_industry
+    self.industry = self.industry.split.map(&:capitalize).join(' ')
+  end
+
+
   def no_expert_shares_user_name
     if Expert.all.any?{|expert| expert.user_name == self.user_name}
       self.errors[:base] << "Username has already been taken"

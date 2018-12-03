@@ -57,6 +57,6 @@ class ExpertsController < ApplicationController
   private
   def expert_params
     params.permit(:user_name, :full_name, :address, :city,:state,:zip_code, :website_url, :cover_photo,
-    :about, :profile_picture, :job_title, :phone, :email, :company, :password, tags: [], :expert =>{})
+    :about, :profile_picture, :job_title, :phone, :email, :company, :password, tags: [])
   end
 end

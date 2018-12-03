@@ -14,4 +14,12 @@ class Question < ApplicationRecord
   def upvote_score
     self.question_upvotes.sum{|upvote| upvote.score}
   end
+
+  def user_name
+    self.user.user_name
+  end
+
+  def user_industry
+    self.user.industry
+  end
 end
