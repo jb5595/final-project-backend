@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :answer_upvotes
   resources :question_upvotes
   resources :expert_tags
+  get "/experts/analytics/:expert_id", to: "experts#analytics"
   get "/experts/searchPreview/:search_term", to: 'experts#search_preview'
   get "/questions/searchPreview/:search_term", to: 'questions#search_preview'
   get "/experts/suggested_questions/:expert_id", to: 'experts#suggested_questions'

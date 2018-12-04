@@ -32,6 +32,33 @@ class Expert < ApplicationRecord
     self.answers.sum{|answer| answer.upvote_score}
   end
 
+  def analytics
+
+    {profile_views: self.profile_views_analytics, website_clicks: self.website_clicks_analytics}
+  end
+  def website_clicks_analytics
+    total_clicks = self.website_clicks.length
+    clicks_this_month = self.website_clicks.select{ |click| click.created_at.month == Date.current.month}.length
+    clicks_last_month = self.website_clicks.select{ |click| click.created_at.month == (Date.current.month - 1) }.length
+
+    {total_clicks: total_clicks, clicks_this_month: clicks_this_month, clicks_last_month: clicks_last_month}
+
+  end
+
+  def answers_overview
+    total_answers = self.answered_questions.length
+    answers_this_month = self.answered_questions.select{ |answer| answer.created_at.month == Date.current.month}.length
+    answers_last_month = self.answered_questions.select{ |answer| answer.created_at.month == (Date.current.month - 1) }.length
+    {total_answers: total_answers, answers_this_month: answers_this_month, answers_last_month: answers_last_month}
+
+  end
+
+  def profile_views_analytics
+    total_views = self.profile_views.length
+    views_this_month = self.profile_views.select{ |view| view.created_at.month == Date.current.month}.length
+    views_last_month = self.profile_views.select{ |view| view.created_at.month == (Date.current.month - 1) }.length
+    {total_views: total_views, views_this_month: views_this_month, views_last_month: views_last_month}
+  end
 
   def no_user_shares_user_name
 
