@@ -9,6 +9,7 @@ class Expert < ApplicationRecord
   has_many :question_upvotes, as: :upvoter
   has_many :answer_upvotes, as: :upvoter
   has_many :reviews
+  has_many :profile_views
 
   has_one_attached :profile_picture
   has_one_attached :cover_photo
@@ -53,6 +54,9 @@ class Expert < ApplicationRecord
       average = self.reviews.sum{|review| review.score}
       average = (average/self.reviews.length).round
     end
+  end
+  def questions_that_match_tags
+    self.tags.flat_map{|tag| tag.questions.map{|question| question}}
   end
 
   def top_tags

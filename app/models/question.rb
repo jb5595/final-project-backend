@@ -22,4 +22,7 @@ class Question < ApplicationRecord
   def user_industry
     self.user.industry
   end
+  def number_of_answers
+    self.answers.length
+  end
 end

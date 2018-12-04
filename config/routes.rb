@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :profile_views
   resources :reviews
   resources :answer_upvotes
   resources :question_upvotes
   resources :expert_tags
   get "/experts/searchPreview/:search_term", to: 'experts#search_preview'
   get "/questions/searchPreview/:search_term", to: 'questions#search_preview'
+  get "/experts/suggested_questions/:expert_id", to: 'experts#suggested_questions'
   get '/tags/match/:tag_term', to: 'tags#match'
   resources :tag_questions
   resources :tags
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
     resources :work_experiences, only: [:index, :create, :update, :destroy]
     resources :educations, only: [:index, :create, :update, :destroy]
     resources :reviews, only: [:index]
+    resources :profile_views, only: [:index, :create]
 
   end
 end

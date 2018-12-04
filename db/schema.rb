@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_193351) do
+ActiveRecord::Schema.define(version: 2018_12_04_023445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,12 @@ ActiveRecord::Schema.define(version: 2018_12_03_193351) do
     t.string "password_digest"
     t.string "profile_picture_url", default: "https://via.placeholder.com/851x351?text=851x351+Banner%20+Photo"
     t.string "cover_photo_url", default: "https://via.placeholder.com/851x351?text=Banner%20+Photo"
+  end
+
+  create_table "profile_views", force: :cascade do |t|
+    t.integer "expert_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "question_upvotes", force: :cascade do |t|
