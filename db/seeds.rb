@@ -14,17 +14,34 @@ Education.destroy_all
 Answer.destroy_all
 
 expert = Expert.create(
+  user_name: "testexpert",
   full_name: "John Smith",
   address: "1234 Oxford Dr.",
-  city: "Washingotn",
+  city: "Washington",
   state: "DC",
   zip_code: "22203",
-  website_url: "website.com",
+  website_url: "google.com",
   about: "law Expert with 25 years experience in deal structuring",
   job_title: "Partner",
   company: "Lawyer Lawyer & Lawyer",
   phone: "555-555-5555",
-  email: "lawyer@email.com",
+  email: "lawyer@gmail.com",
+  password: "password"
+)
+
+expert = Expert.create(
+  user_name: "testexpert2",
+  full_name: "Kerby Meyers",
+  address: "1234 Oxford Dr.",
+  city: "Washington",
+  state: "DC",
+  zip_code: "22203",
+  website_url: "google.com",
+  about: "Strategic thinker and communicator with expertise in marketing",
+  job_title: "Partner",
+  company: "Lawyer Lawyer & Lawyer",
+  phone: "555-555-5555",
+  email: "lawyer@gmail.com",
   password: "password"
 )
 work_experience1 = WorkExperience.new(
