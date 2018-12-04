@@ -10,6 +10,7 @@ class Expert < ApplicationRecord
   has_many :answer_upvotes, as: :upvoter
   has_many :reviews
   has_many :profile_views
+  has_many :website_clicks
 
   has_one_attached :profile_picture
   has_one_attached :cover_photo

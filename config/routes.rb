@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :website_clicks
   resources :profile_views
   resources :reviews
   resources :answer_upvotes
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
     resources :educations, only: [:index, :create, :update, :destroy]
     resources :reviews, only: [:index]
     resources :profile_views, only: [:index, :create]
+    resources :website_clicks, only: [:index, :create]
 
   end
 end
